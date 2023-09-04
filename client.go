@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -92,12 +93,15 @@ func NewClient(restAPIKey, restAPISecret string, opts ...ClientOption) (*Client,
 }
 
 func newRequest(ctx context.Context, method, urlStr string, body any) (*http.Request, error) {
-	b, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
+	var buf io.ReadWriter
+	if body != nil {
+		buf = &bytes.Buffer{}
+		if err := json.NewEncoder(buf).Encode(body); err != nil {
+			return nil, err
+		}
 	}
 
-	httpReq, err := http.NewRequestWithContext(ctx, method, urlStr, bytes.NewReader(b))
+	httpReq, err := http.NewRequestWithContext(ctx, method, urlStr, buf)
 	if err != nil {
 		return nil, err
 	}
