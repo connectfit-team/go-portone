@@ -69,7 +69,7 @@ type GetPaymentResponse struct {
 		CardName          string          `json:"card_name"`
 		CardQuota         int             `json:"card_quota"`
 		CardNumber        string          `json:"card_number"`
-		CardType          string          `json:"card_type"`
+		CardType          int             `json:"card_type"`
 		VbankCode         string          `json:"vbank_code"`
 		VbankName         string          `json:"vbank_name"`
 		VbankNum          string          `json:"vbank_num"`
