@@ -170,7 +170,7 @@ func TestGetPayment(t *testing.T) {
 			CardName          string                  `json:"card_name"`
 			CardQuota         int                     `json:"card_quota"`
 			CardNumber        string                  `json:"card_number"`
-			CardType          string                  `json:"card_type"`
+			CardType          int                     `json:"card_type"`
 			VbankCode         string                  `json:"vbank_code"`
 			VbankName         string                  `json:"vbank_name"`
 			VbankNum          string                  `json:"vbank_num"`
@@ -216,6 +216,7 @@ func TestGetPayment(t *testing.T) {
 			CardCode:          "test_card_code",
 			CardName:          "test_card_name",
 			CardQuota:         0,
+			CardType:          0,
 			VbankCode:         "test_vbank_code",
 			VbankName:         "test_vbank_name",
 			VbankNum:          "test_vbank_num",
